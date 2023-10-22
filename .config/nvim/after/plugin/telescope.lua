@@ -36,6 +36,10 @@ telescope.setup({
                 prompt_position='top',
             },
         },
+        file_ignore_patterns = {
+            ".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
+		    "%.pdf", "%.mkv", "%.mp4", "%.zip"
+        },
     },
     extensions = {
         file_browser = {
