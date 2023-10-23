@@ -100,6 +100,14 @@ return packer.startup(function(use)
     -- Dashboard
     use("goolord/alpha-nvim")
 
+    -- LSP
+    -- Make sure 'zip' is installed - 'sudo apt install zip'
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+
     if packer_bootstrap then
         require("packer").sync()
     end

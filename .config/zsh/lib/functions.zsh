@@ -68,3 +68,42 @@ function update_nvim()
         printf "${RED}Neovim Nightly has NOT been updated! ERROR: ${error_message}${NC}\n"
     fi
 }
+
+function update_clangd()
+{
+    local RED=$(tput setaf 1)
+    local GREEN=$(tput setaf 2)
+    local NC=$(tput sgr0)
+    local BOLD=$(tput bold)
+
+    local repo_url="https://github.com/clangd/clangd/"
+    local latest_url=$(curl -Ls -o /dev/null -w %{url_effective} ${repo_url}/releases/latest)
+    local latest_stable_version=$(basename ${latest_url})
+    local url="https://github.com/clangd/clangd/releases/download/${latest_stable_version}/clangd-linux-${latest_stable_version}.zip"
+    local output=$(curl -L -w http_code=%{http_code} ${url} -o /tmp/clangd)
+    local http_code=$(echo "${output}" | sed -r 's/.*\http_code=//')
+    local error_message=$(cat /tmp/clangd)
+
+    if [[ ${http_code} == 200 ]]; then
+        unzip /tmp/clangd -d /tmp
+        local extracted_dir="/tmp/clangd_${latest_stable_version}"
+        local clangd_bin="${extracted_dir}/bin/clangd"
+        local clangd_lib="${extracted_dir}/lib/clang"
+        chmod +x ${clangd_bin};
+
+        # # Clean existing installation
+        rm -rf /usr/local/bin/clangd
+        rm -rf /usr/local/lib/clang
+
+        sudo mv ${clangd_bin} /usr/local/bin/;
+        sudo mv ${clangd_lib} /usr/local/lib/;
+
+        # Cleanup /tmp/ files
+        rm -rf /tmp/clangd
+        rm -rf ${extracted_dir}
+
+        printf "${GREEN}clangd has been updated successfully to ${latest_stable_version}!${NC}\n"
+    else
+        printf "${RED}clangd has NOT been updated! ERROR: ${error_message}${NC}\n"
+    fi
+}
