@@ -66,7 +66,7 @@ return packer.startup(function(use)
     use("numToStr/Comment.nvim")
 
     -- file explorer
-    -- use("nvim-tree/nvim-tree.lua")
+    use("nvim-tree/nvim-tree.lua")
 
     -- file icons
     use("nvim-tree/nvim-web-devicons")
@@ -106,6 +106,17 @@ return packer.startup(function(use)
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
+    }
+
+    -- Autocompletion
+    use {
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'saadparwaiz1/cmp_luasnip',
+        "L3MON4D3/LuaSnip",
+        'onsails/lspkind.nvim',
     }
 
     if packer_bootstrap then

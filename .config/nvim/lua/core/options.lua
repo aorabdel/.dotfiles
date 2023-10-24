@@ -42,3 +42,6 @@ opt.splitbelow = true
 
 -- word matching
 opt.iskeyword:append("-")
+
+-- pop-up window height
+opt.pumheight = 10
