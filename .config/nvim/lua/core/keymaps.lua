@@ -46,20 +46,20 @@ keymap.set("n", "<leader>ch", ":nohl<CR>", opts)
 keymap.set("n", "x", '"_x')
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
+keymap.set("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
+keymap.set("n", "<leader>sh", "<C-w>s", opts) -- split window horizontally
+keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
+keymap.set("n", "<leader>sx", ":close<CR>", opts) -- close current split window
 
-keymap.set("n", "<C-j>", "<C-w><C-j>") -- move to below split window
-keymap.set("n", "<C-k>", "<C-w><C-k>") -- move to above split window
-keymap.set("n", "<C-l>", "<C-w><C-l>") -- move to right split window
-keymap.set("n", "<C-h>", "<C-w><C-h>") -- move to left split window
+keymap.set("n", "<C-j>", "<C-w><C-j>", opts) -- move to below split window
+keymap.set("n", "<C-k>", "<C-w><C-k>", opts) -- move to above split window
+keymap.set("n", "<C-l>", "<C-w><C-l>", opts) -- move to right split window
+keymap.set("n", "<C-h>", "<C-w><C-h>", opts) -- move to left split window
 
-keymap.set("n", "<C-A-Left>", ":vertical resize +2<CR>")
-keymap.set("n", "<C-A-Right>", ":vertical resize -2<CR>")
-keymap.set("n", "<C-A-UP>", ":horizontal resize +2<CR>")
-keymap.set("n", "<C-A-DOWN>", ":horizontal resize -2<CR>")
+keymap.set("n", "<C-A-Left>", ":vertical resize +2<CR>", opts)
+keymap.set("n", "<C-A-Right>", ":vertical resize -2<CR>", opts)
+keymap.set("n", "<C-A-UP>", ":horizontal resize +2<CR>", opts)
+keymap.set("n", "<C-A-DOWN>", ":horizontal resize -2<CR>", opts)
 
 keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>" ,opts) -- close current tab
@@ -81,10 +81,10 @@ keymap.set("x", "<A-DOWN>", ":move '>+1<CR>gv-gv", opts)
 ---------------------
 
 -- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
+keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+-- nvim-tree, opts
+keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
