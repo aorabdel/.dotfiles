@@ -107,3 +107,32 @@ function update_clangd()
         printf "${RED}clangd has NOT been updated! ERROR: ${error_message}${NC}\n"
     fi
 }
+
+function update_lazygit()
+{
+    local RED=$(tput setaf 1)
+    local GREEN=$(tput setaf 2)
+    local NC=$(tput sgr0)
+    local BOLD=$(tput bold)
+
+
+    local latest_version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    local url="https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${latest_version}_Linux_x86_64.tar.gz"
+    local output=$(curl -L -w http_code=%{http_code} ${url} -o /tmp/lazygit.tar.gz)
+    local http_code=$(echo "${output}" | sed -r 's/.*\http_code=//')
+    local error_message=$(cat /tmp/lazygit.tar.gz)
+
+    if [[ ${http_code} == 200 ]]; then
+        tar xf /tmp/lazygit.tar.gz -C /tmp/
+        chmod +x /tmp/lazygit
+        sudo mv /tmp/lazygit /usr/local/bin/
+
+        # Cleanup /tmp/ files
+        rm -rf /tmp/lazygit.tar.gz
+    
+        printf "${GREEN}lazygit has been updated successfully to ${latest_version}!${NC}\n"
+    else
+        printf "${RED}lazygit has NOT been updated! ERROR: ${error_message}${NC}\n"
+    fi
+
+}

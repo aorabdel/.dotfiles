@@ -90,7 +90,7 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explore
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>") -- file browser
 keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>") -- recent files
-keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<C-S-f>", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>c", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>") 
@@ -105,3 +105,5 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 keymap.set("n", "<A-RIGHT>", ":bnext<CR>", opts) -- next tab
 keymap.set("n", "<A-LEFT>", ":bprevious<CR>", opts) -- previous tab
 keymap.set("n", "<C-w>", ":bp|sp|bn|bd<CR>", opts) -- close tab
+
+keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", opts) -- close tab

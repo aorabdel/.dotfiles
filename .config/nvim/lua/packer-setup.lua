@@ -119,6 +119,8 @@ return packer.startup(function(use)
         'onsails/lspkind.nvim',
     }
 
+    use { 'kdheepak/lazygit.nvim' }
+
     if packer_bootstrap then
         require("packer").sync()
     end
