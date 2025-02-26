@@ -1,8 +1,8 @@
 # ls aliases
-alias ls='ls --color=auto'
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
+alias ls='ls --color=auto -h'
+alias ll='ls -alFh --color=auto'
+alias la='ls -Ah --color=auto'
+alias l='ls -CFh --color=auto'
 alias python='python3'
 
 alias ...='../..'
@@ -11,3 +11,4 @@ alias .....='../../../..'
 alias ......='../../../../..'
 
 alias zrc='nvim $ZRC'
+alias update='sudo apt update && sudo apt upgrade -y'
