@@ -1,6 +1,6 @@
 function zsh_add_file ()
 {
-    [ -f "${ZSH_CONFIG_DIR}/$1" ] && source "${ZSH_CONFIG_DIR}/$1" || echo "$1 not found"
+    [ -f "$ZSH_CONFIG_DIR/$1" ] && source "$ZSH_CONFIG_DIR/$1" || echo "$1 not found"
 }
 
 function zsh_add_plugin ()
@@ -13,7 +13,7 @@ function zsh_add_plugin ()
         zsh_add_file "$plugin_dir/$plugin_name/$plugin_name.plugin.zsh"
         zsh_add_file "$plugin_dir/$plugin_name/$plugin_name.zsh"
     else
-        git clone "https://github.com/$1.git" "{$ZSH_CONFIG_DIR}/${plugin_dir}/${plugin_name}"
+        git clone "https://github.com/$1.git" "$ZSH_CONFIG_DIR/$plugin_dir/$plugin_name"
     fi
 }
 
