@@ -12,3 +12,8 @@ alias ......='../../../../..'
 
 alias zrc='nvim $ZRC'
 alias update='sudo apt update && sudo apt upgrade -y'
+
+# Docker
+alias dprune='docker system prune -af'
+alias dcls='docker ps -a'
+alias dils='docker image ls'
