@@ -39,6 +39,8 @@ opt.clipboard:append("unnamedplus")
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
+-- disable per split plane
+opt.laststatus = 3
 
 -- word matching
 opt.iskeyword:append("-")
