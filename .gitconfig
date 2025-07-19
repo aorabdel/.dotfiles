@@ -1,0 +1,45 @@
+[user]
+    name = Abdelrahman
+    email = Abdelrahman.osama93@gmail.com
+
+[core]
+    editor = nvim
+
+[alias]
+    tree = log --graph --oneline --all
+    branchtree = !git tree --simplify-by-decoration
+    idiff = diff --color --minimal --color-words='[A-Za-z0-9_]+|[^[:space:]]'
+    last = log -1 HEAD --stat
+    treetop = !git tree -n 20
+    addiws = !git diff -w --no-color | git apply --cached --ignore-whitespace
+    co = checkout
+    c = commit --allow-empty -m
+    b = branch
+    wdiff = diff --word-diff=color --unified=1
+    st = status
+    whereami = rev-parse --abbrev-ref HEAD
+    ri = rebase --interactive
+    rc = rebase --continue
+    ra = rebase --abort
+    amend = commit --amend --no-edit
+    mychanges = log --oneline --stat --color --author='Abdelrahman Abdelraouf' --
+    lo = log --oneline
+    ff = merge --ff-only
+    rh = reset --hard HEAD
+    r1 = reset --hard HEAD~1
+    r2 = reset --hard HEAD~2
+    r3 = reset --hard HEAD~3
+    r4 = reset --hard HEAD~4
+    r5 = reset --hard HEAD~5
+    s = stash
+    ss = stash push --keep-index
+    sp = stash pop
+    sl = stash list
+    aliases = config --get-regexp alias
+    fpush = push --force-with-lease
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
