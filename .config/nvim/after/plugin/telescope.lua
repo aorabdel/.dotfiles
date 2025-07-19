@@ -14,7 +14,10 @@ end
 telescope.setup({
     pickers = {
         colorscheme = { enable_preview = true },
-        find_files = { hidden = true },
+        find_files = { 
+            hidden = true,
+            no_ignore = true,
+        },
         live_grep = {
             additional_args = function(opts)
                 return {"--hidden"}
@@ -37,8 +40,8 @@ telescope.setup({
             },
         },
         file_ignore_patterns = {
-            ".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
-		    "%.pdf", "%.mkv", "%.mp4", "%.zip"
+            "^.git/", "^.cache", "%.o$", "%.a$", "%.out$", "%.class$",
+            "%.pdf$", "%.mkv$", "%.mp4$", "%.zip$"
         },
     },
     extensions = {
