@@ -84,15 +84,15 @@ keymap.set("x", "<A-DOWN>", ":move '>+1<CR>gv-gv", opts)
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>", opts) -- toggle split window maximization
 
 -- nvim-tree, opts
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
+keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>", opts) -- toggle file explorer
 
 -- telescope
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
+keymap.set("n", "<leader>e", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>") -- file browser
-keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>") -- recent files
-keymap.set("n", "<C-S-f>", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+keymap.set("n", "<leader>tr", "<cmd>Telescope oldfiles<CR>") -- recent files
+keymap.set("n", "<leader>tg", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>c", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
-keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
+keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>") 
 
 -- telescope git commands
