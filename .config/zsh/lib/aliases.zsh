@@ -7,6 +7,12 @@ alias l='ls -CFh --color=auto'
 alias python='python3'
 alias vi=vim
 
+alias lld="df -h | sed -n '1p;/mapper/p'"
+alias lls="du -csh * | sort -hr"
+alias lg='lazygit'
+alias g='git'
+alias vi=vim
+
 alias ...='../..'
 alias ....='../../..'
 alias .....='../../../..'
