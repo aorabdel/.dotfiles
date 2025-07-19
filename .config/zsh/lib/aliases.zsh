@@ -3,7 +3,9 @@ alias ls='ls --color=auto -h'
 alias ll='ls -alFh --color=auto'
 alias la='ls -Ah --color=auto'
 alias l='ls -CFh --color=auto'
+
 alias python='python3'
+alias vi=vim
 
 alias ...='../..'
 alias ....='../../..'
