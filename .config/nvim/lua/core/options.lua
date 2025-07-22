@@ -22,10 +22,10 @@ opt.undofile = true
 opt.ignorecase = true
 opt.smartcase = true
 
---cursor line
+-- cursor line
 opt.cursorline = true
 
---appearance
+-- appearance
 opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
@@ -47,3 +47,6 @@ opt.iskeyword:append("-")
 
 -- pop-up window height
 opt.pumheight = 10
+
+-- disable default status bar
+opt.showmode = false

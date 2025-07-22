@@ -5,6 +5,10 @@ end
 
 lualine.setup({
     options = {
-        theme = "codedark"
+        -- theme = "codedark"
+        theme = "auto"
+    },
+    sections = {
+        lualine_c = { { 'filename', path = 3 } }
     }
 })

@@ -11,9 +11,9 @@ local lspkind = require('lspkind')
 local kind_icons = vim.g.lsp_kind_icons
 print(#kind_icons)
 cmp.setup {
-    completion = {
-        autocomplete = false,
-    },
+    -- completion = {
+    --     autocomplete = false,
+    -- },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -54,10 +54,12 @@ cmp.setup {
             keyword_length = 3,
         },
         { name = 'luasnip' },
-    }, 
-    {
         { name = 'buffer' },
-    },
+        {
+            name = 'go_deep',
+            keyword_length = 3,
+       },
+    }, 
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
@@ -73,6 +75,7 @@ cmp.setup {
                 luasnip = "[LuaSnip]",
                 nvim_lua = "[Lua]",
                 latex_symbols = "[LaTeX]",
+                go_deep = "[GoDeep]",
             })[entry.source.name]
             return vim_item
         end

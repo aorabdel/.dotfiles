@@ -1,3 +1,4 @@
 .config/zsh/plugins/*
 .config/tmux/plugins/*
 .config/nvim/plugin/*
+.worktrees/

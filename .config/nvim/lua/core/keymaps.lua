@@ -9,6 +9,15 @@ local keymap = vim.keymap
 -- General Keymaps
 ---------------------
 
+--- TODO
+-- search in github organizaiton
+-- search project include Dependencies
+-- live grep word under cursor
+-- search in Workspace (all local projects)
+-- git signs and git git_status
+-- buffer - close others
+-- find more telescope extensions
+
 -- exit insert mode
 keymap.set("i", "<C-c>", "<ESC>")
 keymap.set("n", "<C-q>", "<C-v>")
@@ -19,6 +28,10 @@ keymap.set("n", "<C-s>", ":w<CR>", opts)
 
 -- select all
 keymap.set("n", "<C-a>", "ggVG", opts)
+
+-- paste register 0, yank saves to unnamed and register 0, d/c only saves to unnamed
+keymap.set("n", "<leader>p", '"0p', opts)
+keymap.set("n", "<leader>P", '"0P', opts)
 
 -- Shift tab
 keymap.set("i", "<S-TAB>", "<C-d>", opts)
@@ -91,6 +104,12 @@ keymap.set("n", "<leader>e", "<cmd>Telescope find_files<cr>") -- find files with
 keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>") -- file browser
 keymap.set("n", "<leader>r", "<cmd>Telescope oldfiles<CR>") -- recent files
 keymap.set("n", "<leader>gr", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
+vim.keymap.set("n", "<leader>gp", function()
+  require('telescope.builtin').live_grep({
+    search_dirs = {vim.fn.system('go env GOPATH'):gsub('\n', '') .. '/pkg/mod'},
+    prompt_title = 'Search Go Dependencies',
+  })
+end)
 keymap.set("n", "<leader>gw", "<cmd>Telescope grep_string<cr>") -- find string under cursor in current working directory
 keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>") 
@@ -102,6 +121,8 @@ keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git bra
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- bufferline 
+-- TODO: Maybe make A-Left, A-Right, instead of ctrl-i and ctrl-o
+-- and make ctrl-n and ctrl-p bnext and bprev
 keymap.set("n", "<A-RIGHT>", ":bnext<CR>", opts) -- next tab
 keymap.set("n", "<A-LEFT>", ":bprevious<CR>", opts) -- previous tab
 keymap.set("n", "<leader>q", ":update|bp|sp|bn|bd<CR>", opts) -- close tab
