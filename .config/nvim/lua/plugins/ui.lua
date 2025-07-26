@@ -2,7 +2,6 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        lazy = false,
         opts = {
             options = {
                 theme = 'wombat',
@@ -15,7 +14,7 @@ return {
     {
         "goolord/alpha-nvim",
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        lazy = false,
+        event = "VimEnter",
         config = function()
             local dashboard = require("alpha.themes.dashboard")
             local art = vim.g.ascii_art

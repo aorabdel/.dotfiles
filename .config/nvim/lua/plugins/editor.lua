@@ -1,11 +1,9 @@
 return {
     {
         "christoomey/vim-tmux-navigator",
-        lazy = false,
     },
     {
         "szw/vim-maximizer",
-        lazy = false,
         keys = {
             { "<leader>z", "<cmd>MaximizerToggle<CR>" ,  desc = "toggle window maximization" },
         },
@@ -17,7 +15,6 @@ return {
     },
     {
         'numToStr/Comment.nvim',
-        lazy = false,
         opts = {
             --- toggle mappings in NORMAL mode
             toggler = {
@@ -33,7 +30,6 @@ return {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        lazy = false,
         main = "ibl",
         opts = {
             indent = {
@@ -48,7 +44,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = 'master',
-        lazy = false,
         build = ":TSUpdate",
         config = function () 
             local configs = require("nvim-treesitter.configs")
@@ -62,7 +57,7 @@ return {
                     "dockerfile", "json", "yaml"
                 },
                 sync_install = false,
-                auto_install = false,
+                auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },  
             })
@@ -70,7 +65,6 @@ return {
     },
     {
         'abecodes/tabout.nvim',
-        lazy = false,
         config = function()
             require('tabout').setup {
                 tabkey = '<Tab>',
