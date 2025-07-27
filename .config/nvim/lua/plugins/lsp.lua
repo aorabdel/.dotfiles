@@ -95,6 +95,7 @@ return {
 							format = {
 								enable = false,
 							},
+							diagnostics = { disable = { "missing-fields" } },
 						},
 					},
 				},

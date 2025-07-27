@@ -1,6 +1,11 @@
 require("config.lazy")
 
+--- Inspiration ---
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+-- https://github.com/radleylewis/nvim/tree/master
+
 --- TODO ---
+-- oil.nvim instead of telescope file browser extension
 -- search in github organizaiton
 -- search project include Dependencies
 -- search in Workspace (all local projects)
