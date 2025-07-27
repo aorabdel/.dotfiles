@@ -58,7 +58,9 @@ return {
 			-- LSP Server configuration
 			local servers = {
 				gopls = {
-					root_dir = vim.loop.cwd(),
+					root_dir = function(_, on_dir)
+						on_dir(vim.fn.getcwd())
+					end,
 					settings = {
 						gopls = {
 							-- enable all analyses

@@ -23,7 +23,8 @@ opt.swapfile = false
 opt.backup = false
 opt.autochdir = false
 opt.mouse = "a"
-opt.mousemodel = extend
+opt.mousemodel = "extend"
+opt.hidden = true
 
 -- search settings
 opt.incsearch = true

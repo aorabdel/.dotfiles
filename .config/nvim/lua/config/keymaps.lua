@@ -28,10 +28,10 @@ keymap.set("n", "<leader>P", '"0P', opts)
 keymap.set("i", "<S-TAB>", "<C-d>", opts)
 
 -- Search and replace the word under the cursor
-keymap.set("n", "<leader>h",[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap.set("n", "<leader>h", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Search the word under the cursor
-keymap.set("n", "<leader>sw",[[/<C-r><C-w>]])
+keymap.set("n", "<leader>sw", [[/<C-r><C-w>]])
 
 -- disable macro recording
 keymap.set("n", "Q", "<nop>")
@@ -66,7 +66,7 @@ keymap.set("n", "<C-A-UP>", ":horizontal resize +2<CR>", opts)
 keymap.set("n", "<C-A-DOWN>", ":horizontal resize -2<CR>", opts)
 
 keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
-keymap.set("n", "<leader>tx", ":tabclose<CR>" ,opts) -- close current tab
+keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
 
@@ -90,20 +90,19 @@ keymap.set("x", "<S-DOWN>", "j", opts)
 
 -- cursor history
 
-
 -- bufferline
 keymap.set("n", "<A-RIGHT>", ":bnext<CR>", opts) -- next buffer
 keymap.set("n", "<A-LEFT>", ":bprevious<CR>", opts) -- previous buffer
 keymap.set("n", "<leader>q", ":update|bp|sp|bn|bd<CR>", opts) -- close buffer
 keymap.set("n", "<leader>q", function()
-    -- If buffer has a name and is modified, save it
-    if vim.api.nvim_buf_get_name(0) ~= "" and vim.api.nvim_buf_get_option(0, 'modified') then
-        vim.cmd("write")
-    end
-    -- Close the buffer
-    vim.cmd("bd")
+	-- If buffer has a name and is modified, save it
+	if vim.api.nvim_buf_get_name(0) ~= "" and vim.api.nvim_get_option_value("modified", { buf = 0 }) then
+		vim.cmd("write")
+	end
+	-- Close the buffer
+	vim.cmd("bd")
 end, { desc = "Save and close buffer" })
 keymap.set("n", "<leader>Q", function()
-    vim.cmd("silent! wa")  -- Save all named files, ignore errors
-    vim.cmd("qa")          -- Quit all
+	vim.cmd("silent! wa") -- Save all named files, ignore errors
+	vim.cmd("qa") -- Quit all
 end, { desc = "Save all and quit" })

@@ -30,6 +30,7 @@ require("config.lazy")
 --       does not refresh the diagnostics regarding imports
 --     * if there are multiple go buffers open from different packages, you will have multiple lsp clients and they will clash with eachother, especially if they are dependencies,
 --       you will see errors like function not found in the depencies and dependancy walking will be broken, make sure you have only one gopls client and make sure it is for the desired root dir
+-- Switch CWD (projects) using telescope file browser or zoxide extension
 
 --- Motions ---
 -- <count>r - replace next <count> char with input char and go back to Normal mode
