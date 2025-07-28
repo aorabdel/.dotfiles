@@ -70,6 +70,7 @@ return {
 								nilness = true,
 								unusedwrite = true,
 								useany = true,
+								ST1000 = false, -- Disable ST1000 package comment check
 							},
 							-- enable experimental features
 							experimentalpostfixcompletions = true,
