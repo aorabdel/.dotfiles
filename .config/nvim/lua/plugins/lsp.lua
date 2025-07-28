@@ -16,16 +16,37 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "lsp: " .. desc })
 					end
 
+					local function telescope_lsp(picker)
+						return function()
+							require("telescope.builtin")[picker]({ layout_strategy = "vertical" })
+						end
+					end
+
+					-- Diagnostics function with vertical layout
+					local function telescope_diagnostics_sorted()
+						local diagnostics =
+							vim.diagnostic.get(nil, { severity = { min = vim.diagnostic.severity.HINT } })
+						table.sort(diagnostics, function(a, b)
+							return a.severity < b.severity
+						end)
+						require("telescope.builtin").diagnostics({
+							bufnr = nil,
+							diagnostics = diagnostics,
+							layout_strategy = "vertical",
+						})
+					end
+
 					-- keymaps
-					map("gd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
+					map("gd", telescope_lsp("lsp_definitions"), "[g]oto [d]efinition")
+					map("gr", telescope_lsp("lsp_references"), "[g]oto [r]eferences")
+					map("gi", telescope_lsp("lsp_implementations"), "[g]oto [i]mplementation")
+					map("gs", telescope_lsp("lsp_document_symbols"), "open document symbols")
+					map("gS", telescope_lsp("lsp_dynamic_workspace_symbols"), "open workspace symbols")
+					map("gt", telescope_lsp("lsp_type_definitions"), "[g]oto [t]ype definition")
+					map("ga", telescope_diagnostics_sorted, "[g]oto [a]nalysis")
 					map("gD", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
-					map("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
-					map("gi", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
 					map("gR", vim.lsp.buf.rename, "[r]e[n]ame")
 					map("gc", vim.lsp.buf.code_action, "[g]oto code [a]ction", { "n", "x" })
-					map("gs", require("telescope.builtin").lsp_document_symbols, "open document symbols")
-					map("gs", require("telescope.builtin").lsp_dynamic_workspace_symbols, "open workspace symbols")
-					map("gt", require("telescope.builtin").lsp_type_definitions, "[g]oto [t]ype definition")
 
 					-- highlight references on cursor hold
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
