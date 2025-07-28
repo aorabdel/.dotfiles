@@ -34,6 +34,7 @@ zsh_add_file "lib/aliases.zsh"
 zsh_add_file "lib/exports.zsh"
 zsh_add_file "lib/keybinds.zsh"
 zsh_add_file "lib/startup.zsh"
+zsh_add_file "lib/local.zsh"
 
 # Tmux plugins
 tmux_add_plugin "tmux-plugins/tpm"
