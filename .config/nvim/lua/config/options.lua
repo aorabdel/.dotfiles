@@ -14,6 +14,9 @@ opt.smartindent = true
 
 -- line wrapping
 opt.wrap = false
+opt.breakindent = true
+opt.linebreak = true
+opt.showbreak = "↳ "
 
 -- behaviour
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"

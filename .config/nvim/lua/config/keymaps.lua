@@ -49,6 +49,9 @@ keymap.set("n", "<leader>ch", ":nohl<CR>", opts)
 -- delete single character without copying into register
 keymap.set("n", "x", '"_x')
 
+-- toggle wrap
+keymap.set({ "n", "v" }, "<leader>w", "<cmd>set wrap!<CR>")
+
 -- window management
 keymap.set("n", "<leader>\\", "<C-w>v", opts) -- split window vertically
 keymap.set("n", "<leader>-", "<C-w>s", opts) -- split window horizontally
