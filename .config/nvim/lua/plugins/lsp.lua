@@ -21,7 +21,7 @@ return {
 					map("gD", vim.lsp.buf.declaration, "[g]oto [d]eclaration")
 					map("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
 					map("gi", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
-					map("gr", vim.lsp.buf.rename, "[r]e[n]ame")
+					map("gR", vim.lsp.buf.rename, "[r]e[n]ame")
 					map("gc", vim.lsp.buf.code_action, "[g]oto code [a]ction", { "n", "x" })
 					map("gs", require("telescope.builtin").lsp_document_symbols, "open document symbols")
 					map("gs", require("telescope.builtin").lsp_dynamic_workspace_symbols, "open workspace symbols")
