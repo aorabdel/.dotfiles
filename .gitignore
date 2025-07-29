@@ -3,3 +3,4 @@
 .config/tmux/plugins/*
 .config/nvim/plugin/*
 .worktrees/
+.gitconfig.local
