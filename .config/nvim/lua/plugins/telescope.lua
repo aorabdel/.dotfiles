@@ -24,12 +24,15 @@ return {
 		},
 		{ "<leader>gw", "<cmd>Telescope grep_string<cr>", desc = "find string under cursor in current working directory", },
 		{ "<leader>b", "<cmd>Telescope buffers<cr>", desc = "list open buffers in current neovim instance" },
+		{ "<leader>tr", "<cmd>Telescope resume<cr>", desc = "resume whatever telescope command was last opened" },
+		{ "<leader>*", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "fuzzy find inside currently opened buffer" },
 		{ "<leader>cs", "<cmd>Telescope colorscheme<cr>", desc = "list colorschemes" },
         { "<leader>fz", "<cmd>Telescope zoxide list<cr>", desc = "use zoxide list to change working directory" },
 
 		-- telescope git commands
 		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "list all git commits (use <cr> to checkout) ['gc' for git commits]", },
 		{ "<leader>gf", "<cmd>Telescope git_bcommits<cr>", desc = "list git commits for current file/buffer (use <cr> to checkout) ['gfc' for git file commits]", },
+		{ "<leader>gl", "<cmd>Telescope git_bcommits_range<cr>", mode={ "n", "v" }, desc = "list git commits for current selected range (use <cr> to checkout) ['gfc' for git file commits]", },
 		{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "list git branches (use <cr> to checkout) ['gb' for git branch]", },
 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "list current changes per file with diff preview ['gs' for git status]", },
 		-- stylua: ignore end
@@ -82,6 +85,15 @@ return {
 					additional_args = function(_)
 						return { "--hidden", "--no-ignore" }
 					end,
+				},
+				current_buffer_fuzzy_find = {
+					layout_strategy = "vertical",
+					previewer = false,
+					layout_config = {
+						vertical = {
+							prompt_position = "top",
+						},
+					},
 				},
 			},
 			extensions = {

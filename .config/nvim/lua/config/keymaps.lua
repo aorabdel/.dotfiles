@@ -8,7 +8,6 @@ local keymap = vim.keymap
 ---------------------
 -- General Keymaps
 ---------------------
-
 -- exit insert mode
 keymap.set("i", "<C-c>", "<ESC>")
 keymap.set("n", "<C-q>", "<C-v>")
