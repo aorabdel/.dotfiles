@@ -5,11 +5,15 @@ require("config.lazy")
 -- https://github.com/radleylewis/nvim/tree/master
 
 --- TODO ---
+-- folke/persistent
+-- breadcumbs
+-- marks
+-- octo - gh cli wrapper
+-- tmux - continium
 -- oil.nvim instead of telescope file browser extension
 -- search in github organizaiton
 -- search project include Dependencies
 -- search in Workspace (all local projects)
--- git signs and git git_status
 -- buffer - close others
 -- find more telescope extensions
 --      Configuration Recipes - https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
@@ -20,7 +24,6 @@ require("config.lazy")
 -- https://www.youtube.com/watch?v=fhrP6YHAvzI  //  https://github.com/radleylewis/nvim
 -- Noice - configure - search overrides lualine
 -- bottom margin under status
--- Checkout out all telescope_builtin.lsp_* functions
 -- Checkout out all vim.lsp.* functions
 -- setup snippets
 --      Luasnip (engine)
@@ -28,7 +31,9 @@ require("config.lazy")
 --      include it in blink.cmp
 
 --- DONE
+-- git signs and git git_status
 -- Fix: live grep word under cursor (set correct options to ignore .gitignore and search hidden files)
+-- Checkout out all telescope_builtin.lsp_* functions
 -- lsp quircks (mimic vs-code behaviour)
 --     * ON LspRestart, the auto dispatcher will create a new default lsp client, that means no settings, and no specific setup
 --     * gopls quirk: if you do a go mod tidy, Imports diagnostic will only update when the imports are edited, any other edits than the imports,
