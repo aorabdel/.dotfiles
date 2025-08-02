@@ -31,8 +31,11 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {
-			indent = {
+        opts = {
+            scope = {
+                show_start = false,
+            },
+            indent = {
 				-- char = '│',  -- Default thick line
 				char = "┊", -- Dotted line (thinnest)
 				-- char = '╎',  -- Dashed line
