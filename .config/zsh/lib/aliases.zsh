@@ -27,3 +27,11 @@ alias update='sudo apt update && sudo apt upgrade -y'
 alias dprune='docker system prune -af'
 alias dcls='docker ps -a'
 alias dils='docker image ls'
+
+# Quick git - shorter than .git config aliases
+alias gl='git log --oneline'
+alias gs='git status'
+alias gb='git branch'
+alias gco='git checkout'
+alias gc='git commit --allow-empty -m'
+alias gp='git pull origin $(git rev-parse --abbrev-ref HEAD)'
