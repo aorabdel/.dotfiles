@@ -52,6 +52,7 @@ return {
 					},
 				},
 				sorting_strategy = "ascending",
+                wrap_results = true,
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
