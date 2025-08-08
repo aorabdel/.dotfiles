@@ -21,6 +21,7 @@ opt.showbreak = "↳ "
 -- behaviour
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
+opt.autoread = true
 
 opt.swapfile = false
 opt.backup = false
