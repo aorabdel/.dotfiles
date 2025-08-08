@@ -22,6 +22,7 @@ alias ......='../../../../..'
 
 alias zrc='nvim $ZRC'
 alias update='sudo apt update && sudo apt upgrade -y'
+alias cpf='xclip -selection clipboard <'
 
 # Docker
 alias dprune='docker system prune -af'
