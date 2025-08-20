@@ -18,7 +18,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" },
         keys = {
             { "<leader>dc", "<cmd>DiffviewOpen<cr>", desc = "[D]iff [C]urrent" },
-            { "<leader>db", "<cmd>DiffviewOpen origin/main..HEAD<cr>", desc = "[D]iff [B]ranch" },
+            { "<leader>db", "<cmd>DiffviewOpen origin/HEAD..HEAD<cr>", desc = "[D]iff [B]ranch" },
             { "<leader>dp", "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle the [D]iff file [P]anel" },
             { "<leader>df", "<cmd>DiffviewFileHistory %<cr>", desc = "[D]iff [F]ile history" },
             { "<leader>dq", "<cmd>DiffviewClose<cr>", desc = "[D]iff [Q]uit" },
