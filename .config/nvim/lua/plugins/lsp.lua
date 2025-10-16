@@ -94,7 +94,7 @@ return {
 							},
 							-- enable experimental features
 							experimentalpostfixcompletions = true,
-							gofumpt = true,
+							gofumpt = false, -- Disable because of enforcing "Avoid naked returns for the sake of clarity"
 							staticcheck = true,
 							useplaceholders = true,
 							-- completeunimported = true,
@@ -201,7 +201,8 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-                go = {"goimports", "gofumpt"},
+                -- go = {"goimports", "gofumpt"},
+                go = {"goimports"},
 			},
 		},
 	},
