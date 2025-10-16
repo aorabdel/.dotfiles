@@ -19,9 +19,11 @@ keymap.set("n", "<C-s>", ":w<CR>", opts)
 -- select all
 keymap.set("n", "<C-a>", "ggVG", opts)
 
+-- delete without yanking
+keymap.set("n", "<leader>d", '"_d', opts)
+
 -- paste register 0, yank saves to unnamed and register 0, d/c only saves to unnamed
-keymap.set("n", "<leader>p", '"0p', opts)
-keymap.set("n", "<leader>P", '"0P', opts)
+keymap.set("n", "<leader>p", '"_dP', opts)
 
 -- Shift tab
 keymap.set("i", "<S-TAB>", "<C-d>", opts)
