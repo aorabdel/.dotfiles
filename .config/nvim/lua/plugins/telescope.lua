@@ -96,6 +96,12 @@ return {
 						},
 					},
 				},
+                lsp_document_symbols = {
+                    symbol_width = 100
+                },
+                lsp_workspace_symbols = {
+                    fname_width = 120
+                },
 			},
 			extensions = {
 				file_browser = {
