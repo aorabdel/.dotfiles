@@ -98,6 +98,7 @@ return {
 							staticcheck = true,
 							useplaceholders = true,
 							-- completeunimported = true,
+                            buildFlags =  {"-tags=integration"},
 							matcher = "fuzzy",
 							symbolmatcher = "fuzzy",
 							-- this is crucial for cross-package functionality
