@@ -7,13 +7,15 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-file-browser.nvim",
 		"jvgrootveld/telescope-zoxide",
+        { "nvim-telescope/telescope-live-grep-args.nvim" ,version = "^1.1.0"},
 	},
 	keys = {
         -- stylua: ignore start
 		{ "<leader>e", "<cmd>Telescope find_files<cr>", desc = "find files within current working directory, respects .gitignore", },
 		{ "<leader>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>", desc = "file browser" },
 		{ "<leader>r", "<cmd>Telescope oldfiles<cr>", desc = "recent files" },
-		{ "<leader>gr", "<cmd>Telescope live_grep<cr>", desc = "find string in current working directory as you type", },
+		-- { "<leader>gr", "<cmd>Telescope live_grep<cr>", desc = "find string in current working directory as you type", },
+		{ "<leader>gr", ":lua require('telescope').extensions.live_grep_args.live_grep_args() <cr>", desc = "find string in current working directory as you type", },
 		{ "<leader>gp", function()
 				require("telescope.builtin").live_grep({
 					prompt_title = "Search Go Dependencies",
@@ -40,6 +42,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+        local lga_actions = require("telescope-live-grep-args.actions")
 
 		telescope.setup({
 			defaults = {
@@ -48,6 +51,9 @@ return {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+                        ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -tgo -g '!*_test.go'" }), -- ignore go tests
+                        ["<C-f>"] = lga_actions.quote_prompt({ postfix = " --iglob " }), -- filter results
+                        ["<C-space>"] = lga_actions.to_fuzzy_refine,
 						["<ESC>"] = actions.close,
 					},
 				},
@@ -115,5 +121,6 @@ return {
 		telescope.load_extension("fzf")
 		telescope.load_extension("file_browser")
 		telescope.load_extension("zoxide")
+        telescope.load_extension("live_grep_args")
 	end,
 }
