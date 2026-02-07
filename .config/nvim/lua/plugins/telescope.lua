@@ -7,7 +7,7 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-file-browser.nvim",
 		"jvgrootveld/telescope-zoxide",
-        { "nvim-telescope/telescope-live-grep-args.nvim" ,version = "^1.1.0"},
+		{ "nvim-telescope/telescope-live-grep-args.nvim", version = "^1.1.0" },
 	},
 	keys = {
         -- stylua: ignore start
@@ -42,7 +42,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
-        local lga_actions = require("telescope-live-grep-args.actions")
+		local lga_actions = require("telescope-live-grep-args.actions")
 
 		telescope.setup({
 			defaults = {
@@ -51,14 +51,18 @@ return {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
-                        ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -tgo -g '!*_test.go'" }), -- ignore go tests
-                        ["<C-f>"] = lga_actions.quote_prompt({ postfix = " --iglob " }), -- filter results
-                        ["<C-space>"] = lga_actions.to_fuzzy_refine,
+						["<C-i>"] = lga_actions.quote_prompt({
+							postfix = " -tgo -g '!*_test.go' -g '!*mock_*.go' -g '!testing.go'",
+						}), -- ignore go tests
+						["<C-f>"] = lga_actions.quote_prompt({ postfix = " --iglob " }), -- filter results
+						["<C-space>"] = lga_actions.to_fuzzy_refine,
+						["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+						["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 						["<ESC>"] = actions.close,
 					},
 				},
 				sorting_strategy = "ascending",
-                wrap_results = true,
+				wrap_results = true,
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
@@ -102,17 +106,32 @@ return {
 						},
 					},
 				},
-                lsp_document_symbols = {
-                    symbol_width = 100
-                },
-                lsp_workspace_symbols = {
-                    fname_width = 120
-                },
+				lsp_document_symbols = {
+					symbol_width = 100,
+				},
+				lsp_workspace_symbols = {
+					fname_width = 120,
+				},
 			},
 			extensions = {
 				file_browser = {
 					hijack_netrw = true,
 					hidden = { file_browser = true, folder_browser = true },
+					mappings = {
+						i = {
+							["<C-y>"] = function()
+								local entry = require("telescope.actions.state").get_selected_entry()
+								local cb_opts = vim.opt.clipboard:get()
+								if vim.tbl_contains(cb_opts, "unnamed") then
+									vim.fn.setreg("*", entry.path)
+								end
+								if vim.tbl_contains(cb_opts, "unnamedplus") then
+									vim.fn.setreg("+", entry.path)
+								end
+								vim.fn.setreg("", entry.path)
+							end,
+						},
+					},
 				},
 			},
 		})
@@ -121,6 +140,6 @@ return {
 		telescope.load_extension("fzf")
 		telescope.load_extension("file_browser")
 		telescope.load_extension("zoxide")
-        telescope.load_extension("live_grep_args")
+		telescope.load_extension("live_grep_args")
 	end,
 }
