@@ -69,8 +69,8 @@ return {
 					},
 				},
 				file_ignore_patterns = {
-					"^.git/",
-					"^.cache",
+					"^%.git/",
+					"^%.cache/",
 					"%.o$",
 					"%.a$",
 					"%.out$",
@@ -79,6 +79,17 @@ return {
 					"%.mkv$",
 					"%.mp6$",
 					"%.zip$",
+				},
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--hidden",
+					-- "--no-ignore", -- optional: ignore .gitignore (usually noisy)
 				},
 			},
 			pickers = {
@@ -114,6 +125,11 @@ return {
 				},
 			},
 			extensions = {
+				live_grep_args = {
+					additional_args = function(_)
+						return { "--hidden", "--no-ignore" }
+					end,
+				},
 				file_browser = {
 					hijack_netrw = true,
 					hidden = { file_browser = true, folder_browser = true },
