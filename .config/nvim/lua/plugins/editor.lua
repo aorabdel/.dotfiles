@@ -31,11 +31,11 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-        opts = {
-            scope = {
-                show_start = false,
-            },
-            indent = {
+		opts = {
+			scope = {
+				show_start = false,
+			},
+			indent = {
 				-- char = '│',  -- Default thick line
 				char = "┊", -- Dotted line (thinnest)
 				-- char = '╎',  -- Dashed line
@@ -165,5 +165,12 @@ return {
 		opt = true, -- Set this to true if the plugin is optional
 		event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
 		priority = 1000,
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
 	},
 }
