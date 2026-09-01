@@ -21,8 +21,8 @@ alias .....='../../../..'
 alias ......='../../../../..'
 
 alias zrc='nvim $ZRC'
-alias update='sudo apt update && sudo apt upgrade -y'
 alias cpf='xclip -selection clipboard <'
+alias xcopy='xclip -selection clipboard'
 alias clip='xclip -selection clipboard -i'
 alias clipo='xclip -selection clipboard -o'
 
@@ -44,3 +44,8 @@ alias gPF='git push -f origin $(git rev-parse --abbrev-ref HEAD)'
 alias gP='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gf='git fetch --prune'
 alias gfp='git fetch --all --tags && git pull'
+
+# Tmux
+alias t='tmux a'
+
+alias c='bat -p'

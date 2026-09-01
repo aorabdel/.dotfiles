@@ -1,4 +1,2 @@
 # PATH
-
-# Homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Machine-specific PATH and package-manager setup live in lib/local.zsh (gitignored).

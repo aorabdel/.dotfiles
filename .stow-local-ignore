@@ -1,0 +1,7 @@
+^/\.git$
+^/\.gitignore$
+^/\.stow-local-ignore$
+^/\.worktrees$
+^/Brewfile$
+^/packages$
+^/README.*
