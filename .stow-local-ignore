@@ -3,5 +3,6 @@
 ^/\.stow-local-ignore$
 ^/\.worktrees$
 ^/Brewfile$
+^/Makefile$
 ^/packages$
 ^/README.*
