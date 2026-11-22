@@ -44,3 +44,6 @@ alias gPF='git push -f origin $(git rev-parse --abbrev-ref HEAD)'
 alias gP='git push origin $(git rev-parse --abbrev-ref HEAD)'
 alias gf='git fetch --prune'
 alias gfp='git fetch --all --tags && git pull'
+
+alias d=docker
+alias c=bat

@@ -46,92 +46,115 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		branch = "master",
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 			{ "nvim-treesitter/nvim-treesitter-context", opts = {} },
 		},
 		config = function()
-			local configs = require("nvim-treesitter.configs")
+			local ts = require("nvim-treesitter")
 
-			configs.setup({
-				ensure_installed = {
-					"c",
-					"cpp",
-					"python",
-					"go",
-					"gomod",
-					"gosum",
-					"gotmpl",
-					"gowork",
-					"vim",
-					"vimdoc",
-					"lua",
-					"javascript",
-					"html",
-					"css",
-					"bash",
-					"awk",
-					"tmux",
-					"regex",
-					"dockerfile",
-					"json",
-					"yaml",
-				},
-				sync_install = false,
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-				textobjects = {
-					select = {
-						enable = true,
+			ts.install({
+				"c",
+				"cpp",
+				"python",
+				"go",
+				"gomod",
+				"gosum",
+				"gotmpl",
+				"gowork",
+				"vim",
+				"vimdoc",
+				"lua",
+				"javascript",
+				"html",
+				"css",
+				"bash",
+				"awk",
+				"regex",
+				"dockerfile",
+				"json",
+				"yaml",
+				"markdown",
+				"markdown_inline",
+			})
 
-						-- Automatically jump forward to textobj, similar to targets.vim
-						lookahead = true,
+			-- highlight + indent (replaces `highlight`/`indent`), and auto-install missing parsers (replaces `auto_install`)
+			local function start(buf)
+				vim.treesitter.start(buf)
+				vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					if pcall(start, args.buf) then
+						return
+					end
+					local lang = vim.treesitter.language.get_lang(args.match)
+					if lang and vim.tbl_contains(ts.get_available(), lang) then
+						ts.install(lang):await(function()
+							vim.schedule(function()
+								if vim.api.nvim_buf_is_valid(args.buf) then
+									pcall(start, args.buf)
+								end
+							end)
+						end)
+					end
+				end,
+			})
 
-						keymaps = {
-							-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects?tab=readme-ov-file#built-in-textobjects
-
-							-- You can use the capture groups defined in textobjects.scm
-							["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
-							["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
-							["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
-							["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
-
-							-- works for javascript/typescript files (custom capture I created in after/queries/ecma/textobjects.scm)
-							["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },
-							["i:"] = { query = "@property.inner", desc = "Select inner part of an object property" },
-							["l:"] = { query = "@property.lhs", desc = "Select left part of an object property" },
-							["r:"] = { query = "@property.rhs", desc = "Select right part of an object property" },
-
-							["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
-							["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
-
-							["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
-							["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
-
-							["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
-							["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
-
-							["ac"] = { query = "@call.outer", desc = "Select outer part of a function call" },
-							["ic"] = { query = "@call.inner", desc = "Select inner part of a function call" },
-
-							["af"] = {
-								query = "@function.outer",
-								desc = "Select outer part of a method/function definition",
-							},
-							["if"] = {
-								query = "@function.inner",
-								desc = "Select inner part of a method/function definition",
-							},
-
-							["at"] = { query = "@class.outer", desc = "Select outer part of a class" },
-							["it"] = { query = "@class.inner", desc = "Select inner part of a class" },
-						},
-					},
+			require("nvim-treesitter-textobjects").setup({
+				select = {
+					-- Automatically jump forward to textobj, similar to targets.vim
+					lookahead = true,
 				},
 			})
+
+			local keymaps = {
+				-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects?tab=readme-ov-file#built-in-textobjects
+
+				-- You can use the capture groups defined in textobjects.scm
+				["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
+				["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
+				["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+				["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
+
+				-- works for javascript/typescript files (custom capture I created in after/queries/ecma/textobjects.scm)
+				["a:"] = { query = "@property.outer", desc = "Select outer part of an object property" },
+				["i:"] = { query = "@property.inner", desc = "Select inner part of an object property" },
+				["l:"] = { query = "@property.lhs", desc = "Select left part of an object property" },
+				["r:"] = { query = "@property.rhs", desc = "Select right part of an object property" },
+
+				["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+				["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+
+				["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
+				["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
+
+				["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+				["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+
+				["ac"] = { query = "@call.outer", desc = "Select outer part of a function call" },
+				["ic"] = { query = "@call.inner", desc = "Select inner part of a function call" },
+
+				["af"] = {
+					query = "@function.outer",
+					desc = "Select outer part of a method/function definition",
+				},
+				["if"] = {
+					query = "@function.inner",
+					desc = "Select inner part of a method/function definition",
+				},
+
+				["at"] = { query = "@class.outer", desc = "Select outer part of a class" },
+				["it"] = { query = "@class.inner", desc = "Select inner part of a class" },
+			}
+			for lhs, map in pairs(keymaps) do
+				vim.keymap.set({ "x", "o" }, lhs, function()
+					require("nvim-treesitter-textobjects.select").select_textobject(map.query, "textobjects")
+				end, { desc = map.desc })
+			end
 		end,
 	},
 
