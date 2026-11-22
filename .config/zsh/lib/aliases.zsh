@@ -21,7 +21,16 @@ alias .....='../../../..'
 alias ......='../../../../..'
 
 alias zrc='nvim $ZRC'
-alias update='sudo apt update && sudo apt upgrade -y'
+# System update: pick whichever package manager this machine has
+if (( $+commands[yay] )); then
+    alias update='yay -Syu'
+elif (( $+commands[pacman] )); then
+    alias update='sudo pacman -Syu'
+elif (( $+commands[apt] )); then
+    alias update='sudo apt update && sudo apt upgrade -y'
+elif (( $+commands[brew] )); then
+    alias update='brew update && brew upgrade'
+fi
 alias cpf='xclip -selection clipboard <'
 alias clip='xclip -selection clipboard -i'
 alias clipo='xclip -selection clipboard -o'
