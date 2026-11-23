@@ -13,6 +13,7 @@ alias lg='lazygit'
 alias g='git'
 alias vi=vim
 alias v=nvim
+alias t=tmux
 alias grep='grep --color=always'
 
 alias ...='../..'
